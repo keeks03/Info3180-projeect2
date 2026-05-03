@@ -1,18 +1,17 @@
-# DriftDater — Dating Application
+# DriftDater a Dating Application
 
-**INFO3180 Group Project | 2025–2026**
+**INFO3180 Group Project**
 
-DriftDater is a dating application built using Vue 3 for the frontend and Flask for the backend. The aim of this project was to create a simple platform where users can connect, match, and communicate witheach other.
+DriftDater is a dating application built using Vue 3 for the frontend and Flask for the backend. The aim of this project was to create a simple platform where users can connect, match and communicate witheach other.
 ---
 
 ## Team Members and Roles
 
-
-| Member 1 - Project Manager - Planning, coordination, and overall structure 
-| Member 2 - Backend Lead - Flask API, database design, and backend logic 
-| Member 3 - Frontend Lead - Vue 3 interface, components, and routing 
-| Member 4 - QA and Testing Lead - Testing, validation, and documentation 
-| Member 5 - Deployment Lead - Deployment and configuration 
+- Member 1 - Project Manager - Planning, coordination, and overall structure 
+- Member 2 - Backend Lead - Flask API, database design, and backend logic 
+- Member 3 - Frontend Lead - Vue 3 interface, components, and routing 
+- Member 4 - QA and Testing Lead - Testing, validation, and documentation 
+- Member 5 - Deployment Lead - Deployment and configuration 
 
 ---
 
