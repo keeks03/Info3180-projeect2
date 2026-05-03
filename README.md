@@ -20,13 +20,13 @@ DriftDater is a dating application built using Vue 3 for the frontend and Flask 
 ### Core Features
 
 
-| User Authentication - Register, login, and logout with password hashing 
-| Profile Management - Create and edit profiles with pictures, bio, and interests 
-| Smart Matching - Matching based on interests, age, location, and preferences 
-| Like and Pass System - Mutual likes create confirmed matches 
-| Messaging | Matched users can send and receive messages 
-| Search and Filter - Filter profiles by name, location, age, and interests 
-| Saved Profiles - Bookmark profiles to view later 
+- User Authentication - Register, login, and logout with password hashing 
+- Profile Management - Create and edit profiles with pictures, bio, and interests 
+- Smart Matching - Matching based on interests, age, location, and preferences 
+- Like and Pass System - Mutual likes create confirmed matches 
+- Messaging - Matched users can send and receive messages 
+- Search and Filter - Filter profiles by name, location, age, and interests 
+- Saved Profiles - Bookmark profiles to view later 
 
 ### Additional Features
 
@@ -38,12 +38,12 @@ DriftDater is a dating application built using Vue 3 for the frontend and Flask 
 
 ## Technology Stack
 
-| Frontend - Vue 3, Vite, Pinia, Vue Router 
-| Backend - Flask, SQLAlchemy, Flask-Migrate 
-| Database - SQLite (development), PostgreSQL (production) 
-| Authentication - Flask-Login, Flask-Bcrypt 
-| API - REST with JSON and CORS 
-| Deployment - Render 
+- Frontend - Vue 3, Vite, Pinia, Vue Router
+- Backend - Flask, SQLAlchemy, Flask-Migrate 
+- Database - SQLite (development), PostgreSQL (production) 
+- Authentication - Flask-Login, Flask-Bcrypt 
+- API - REST with JSON and CORS 
+- Deployment - Render 
 
 ---
 
@@ -111,11 +111,11 @@ npm run dev
 The following accounts are available after running `python seed.py`:
 
 
-| alice@example.com - password123 - Alice Wonder 
-| bob@example.com - password123 - Bob Builder 
-| grace@example.com - password123 - Grace Gamer 
-| carol@example.com - password123 - Carol Cook 
-| emma@example.com - password123 - Emma Artist 
+- alice@example.com - password123 - Alice Wonder 
+- bob@example.com - password123 - Bob Builder 
+- grace@example.com - password123 - Grace Gamer 
+- carol@example.com - password123 - Carol Cook 
+- emma@example.com - password123 - Emma Artist 
 
 ---
 
