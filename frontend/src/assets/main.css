@@ -1,0 +1,131 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #6c63ff;
+  --primary-dark: #4b44cc;
+  --primary-light: #a89eff;
+  --secondary: #ff6584;
+  --bg: #f8f7ff;
+  --card: #ffffff;
+  --text: #2d2d2d;
+  --text-muted: #777;
+  --border: #e0deff;
+  --success: #4caf50;
+  --danger: #f44336;
+  --warning: #ff9800;
+  --shadow: 0 4px 20px rgba(108,99,255,0.12);
+  --radius: 16px;
+  --radius-sm: 8px;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 22px; border-radius: 50px; border: none; cursor: pointer;
+  font-size: 0.95rem; font-weight: 600; transition: all 0.2s; white-space: nowrap;
+}
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--primary-dark); transform: translateY(-1px); }
+.btn-secondary { background: var(--border); color: var(--primary); }
+.btn-secondary:hover:not(:disabled) { background: var(--primary-light); color: #fff; }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover:not(:disabled) { background: #c62828; }
+.btn-success { background: var(--success); color: #fff; }
+.btn-outline {
+  background: transparent; color: var(--primary);
+  border: 2px solid var(--primary);
+}
+.btn-outline:hover:not(:disabled) { background: var(--primary); color: #fff; }
+.btn-sm { padding: 6px 14px; font-size: 0.85rem; }
+.btn-lg { padding: 14px 32px; font-size: 1.05rem; }
+
+/* Cards */
+.card {
+  background: var(--card); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 28px;
+}
+
+/* Form elements */
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.9rem; color: var(--text); }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%; padding: 11px 14px; border: 2px solid var(--border);
+  border-radius: var(--radius-sm); font-size: 0.95rem; background: #fff;
+  transition: border-color 0.2s; outline: none; color: var(--text);
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--primary); }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-error { color: var(--danger); font-size: 0.85rem; margin-top: 4px; }
+
+/* Alert */
+.alert {
+  padding: 12px 18px; border-radius: var(--radius-sm);
+  margin-bottom: 16px; font-size: 0.9rem;
+}
+.alert-error { background: #fdecea; color: #c62828; border-left: 4px solid var(--danger); }
+.alert-success { background: #e8f5e9; color: #2e7d32; border-left: 4px solid var(--success); }
+.alert-info { background: #e8eaff; color: var(--primary-dark); border-left: 4px solid var(--primary); }
+
+/* Spinner */
+.spinner {
+  width: 40px; height: 40px; border: 4px solid var(--border);
+  border-top-color: var(--primary); border-radius: 50%;
+  animation: spin 0.8s linear infinite; margin: 40px auto;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Badge */
+.badge {
+  display: inline-block; padding: 3px 10px; border-radius: 50px;
+  font-size: 0.78rem; font-weight: 700;
+}
+.badge-primary { background: var(--primary); color: #fff; }
+.badge-success { background: var(--success); color: #fff; }
+.badge-secondary { background: var(--border); color: var(--text-muted); }
+
+/* Tag chips */
+.tag {
+  display: inline-block; padding: 4px 12px; background: var(--border);
+  color: var(--primary-dark); border-radius: 50px; font-size: 0.8rem;
+  font-weight: 600; margin: 3px;
+}
+
+/* Page wrapper */
+.page { max-width: 900px; margin: 0 auto; padding: 24px 16px; }
+.page-title { font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-bottom: 24px; }
+
+/* Avatar */
+.avatar {
+  border-radius: 50%; object-fit: cover;
+  background: var(--primary-light); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-weight: 700;
+}
+
+/* Match score pill */
+.match-score {
+  display: inline-block; padding: 4px 12px; border-radius: 50px;
+  font-size: 0.82rem; font-weight: 700; color: var(--primary-dark);
+  background: linear-gradient(135deg, #e8e6ff, #c8c3ff);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .page { padding: 16px 10px; }
+  .card { padding: 18px; }
+  .btn { padding: 9px 18px; }
+}
