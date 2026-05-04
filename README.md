@@ -7,11 +7,11 @@ DriftDater is a dating application built using Vue 3 for the frontend and Flask 
 
 ## Team Members and Roles
 
-- Member 1 - Project Manager - Planning, coordination, and overall structure 
-- Member 2 - Backend Lead - Flask API, database design, and backend logic 
-- Member 3 - Frontend Lead - Vue 3 interface, components, and routing 
-- Member 4 - QA and Testing Lead - Testing, validation, and documentation 
-- Member 5 - Deployment Lead - Deployment and configuration 
+- Cheyenne Gowie(620149270) - Project Manager - Planning, coordination, and overall structure 
+- Adrienne Jobs(620172127) - Backend Lead - Flask API, database design, and backend logic 
+- Akeelia Philbert(620160082) - Frontend Lead - Vue 3 interface, components, and routing 
+- Shantauna Sibbey(620137399) - QA and Testing Lead - Testing, validation, and documentation 
+- Brittania Gregory(620137399) - Deployment Lead - Deployment and configuration 
 
 ---
 
