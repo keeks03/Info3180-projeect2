@@ -87,13 +87,17 @@ def me():
 
 @auth_bp.route('/check', methods=['GET'])
 def check_auth():
-    if current_user.is_authenticated:
-        has_profile = current_user.profile is not None
-        return jsonify({
-            'authenticated': True,
-            #'user': current_user.to_dict(),
-            #'has_profile': has_profile
-            'user_id': current_user.id,
-            'email': current_user.email
-        }), 200
-    return jsonify({'authenticated': False}), 200
+    try:
+        if current_user.is_authenticated:
+            has_profile = current_user.profile is not None
+            return jsonify({
+                'authenticated': True,
+                #'user': current_user.to_dict(),
+                #'has_profile': has_profile
+                'user_id': current_user.id,
+                'email': current_user.email
+            }), 200
+        return jsonify({'authenticated': False}), 200
+    except Exception as e:
+        print(f"Error in /check: {e}")
+        return jsonify({'authenticated': False, 'error': str(e)}), 200
