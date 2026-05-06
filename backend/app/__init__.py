@@ -1,4 +1,4 @@
-from backend import app
+#from backend import app
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
