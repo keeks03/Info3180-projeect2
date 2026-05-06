@@ -32,7 +32,7 @@ def create_app(config_class=None):
     bcrypt.init_app(app)
     login_manager.init_app(app)
 
-    CORS(app, supports_credentials=True, origins=["http://localhost:5173", "http://127.0.0.1:5173"])
+    CORS(app, supports_credentials=True, origins=["http://localhost:5173", "http://127.0.0.1:5173", "https://driftdater-frontend-7s49.onrender.com"])
     
     # Import models so Flask-Migrate picks them up
     from app.models import user, profile, match, message, favourite
