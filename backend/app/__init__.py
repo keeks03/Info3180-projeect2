@@ -1,4 +1,5 @@
 #from backend import app
+from backend import app
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -12,7 +13,6 @@ db = SQLAlchemy()
 migrate = Migrate()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
-app.register_blueprint(main_bp)
 
 
 def create_app(config_class=None):
@@ -47,6 +47,8 @@ def create_app(config_class=None):
     from app.routes.search import search_bp
     from app.routes.favourites import favourites_bp
 
+
+    app.register_blueprint(main_bp)
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(profiles_bp, url_prefix='/api/profiles')
     app.register_blueprint(matches_bp, url_prefix='/api/matches')
