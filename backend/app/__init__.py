@@ -14,6 +14,7 @@ login_manager = LoginManager()
 
 
 def create_app(config_class=None):
+    db.create_all()
     app = Flask(__name__)
 
     if config_class is None:
