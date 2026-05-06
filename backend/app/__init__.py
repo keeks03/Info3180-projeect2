@@ -34,12 +34,13 @@ def create_app(config_class=None):
 
     CORS(app, supports_credentials=True, origins=["http://localhost:5173", "http://127.0.0.1:5173"])
     
+    # Import models so Flask-Migrate picks them up
+    from app.models import user, profile, match, message, favourite
+
     with app.app_context():
         db.create_all()
         print("✅ Database tables created/verified!")
 
-    # Import models so Flask-Migrate picks them up
-    from app.models import user, profile, match, message, favourite
 
     # Register blueprints
     from app.routes.auth import auth_bp
