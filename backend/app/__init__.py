@@ -14,7 +14,6 @@ login_manager = LoginManager()
 
 
 def create_app(config_class=None):
-    db.create_all()
     app = Flask(__name__)
 
     if config_class is None:
@@ -34,6 +33,10 @@ def create_app(config_class=None):
     login_manager.init_app(app)
 
     CORS(app, supports_credentials=True, origins=["http://localhost:5173", "http://127.0.0.1:5173"])
+    
+    with app.app_context():
+        db.create_all()
+        print("✅ Database tables created/verified!")
 
     # Import models so Flask-Migrate picks them up
     from app.models import user, profile, match, message, favourite
