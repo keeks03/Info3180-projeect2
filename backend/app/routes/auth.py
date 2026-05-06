@@ -12,13 +12,13 @@ def register():
     if not data:
         return jsonify({'error': 'No data provided'}), 400
 
-    required = ['email', 'username', 'password']
+    required = ['email', 'name', 'password']
     for field in required:
         if not data.get(field):
             return jsonify({'error': f'{field} is required'}), 400
 
     email = data['email'].strip().lower()
-    username = data['username'].strip()
+    name = data['name'].strip()
     password = data['password']
 
     # Validate email format
