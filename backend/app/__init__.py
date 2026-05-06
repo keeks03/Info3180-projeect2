@@ -1,4 +1,3 @@
-#from backend import app
 from backend import app
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
