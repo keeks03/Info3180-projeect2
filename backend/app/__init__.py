@@ -1,15 +1,18 @@
+from backend import app
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from flask_login import LoginManager
+from app.routes import main_bp
 import os
 
 db = SQLAlchemy()
 migrate = Migrate()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
+app.register_blueprint(main_bp)
 
 
 def create_app(config_class=None):
