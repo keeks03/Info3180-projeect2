@@ -4,7 +4,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
 
 const api = axios.create({
   // baseURL: '/api',
-  baseURL: '${API_URL}/api',
+  baseURL: `${API_URL}/api`,
   withCredentials: true,
   headers: { 'Content-Type': 'application/json' }
 })
@@ -25,7 +25,8 @@ export const profilesAPI = {
   updateMe: (formData) => api.put('/profiles/me', formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
   getById: (userId) => api.get(`/profiles/${userId}`),
   browse: () => api.get('/profiles/browse'),
-  getPictureUrl: (filename) => filename ? `/api/profiles/picture/${filename}` : null,
+  // getPictureUrl: (filename) => filename ? `/api/profiles/picture/${filename}` : null,
+  getPictureUrl: (filename) => filename ? `${API_URL}/api/profiles/picture/${filename}` : null,
 }
 
 // Matches
