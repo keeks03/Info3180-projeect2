@@ -18,5 +18,11 @@ export default defineConfig({
         credentials: true
       }
     }
+  },
+  preview: {
+    allowedHosts: [
+      'driftdater-frontend-7s49.onrender.com',
+      'localhost'
+    ]
   }
 })
