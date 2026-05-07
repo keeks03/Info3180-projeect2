@@ -42,7 +42,7 @@ def create_app(config_class=None):
         print("✅ Database tables created/verified!")
 
 
-    # Register blueprints
+    # Register blueprint
     from app.routes.auth import auth_bp
     from app.routes.profiles import profiles_bp
     from app.routes.matches import matches_bp
