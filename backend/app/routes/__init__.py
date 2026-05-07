@@ -16,6 +16,7 @@ def index():
         }
     })
 
+
 # Add a health check route
 @main_bp.route('/api/health')
 def health():

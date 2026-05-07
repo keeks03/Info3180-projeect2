@@ -37,6 +37,6 @@ class User(UserMixin, db.Model):
         return {
             'id': self.id,
             'email': self.email,
-            'username': self.name,
+            'name': self.name,
             'created_at': self.created_at.isoformat() if self.created_at else None
         }
