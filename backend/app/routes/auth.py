@@ -87,6 +87,7 @@ def me():
 
 @auth_bp.route('/check', methods=['GET'])
 def check_auth():
+    print("!!! The /check endpoint was called !!!")
     try:
         if current_user.is_authenticated:
             has_profile = current_user.profile is not None
