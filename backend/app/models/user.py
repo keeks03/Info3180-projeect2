@@ -5,7 +5,12 @@ from datetime import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    print(f"🔍 Loading user with ID: {user_id}")
+    user = User.query.get(int(user_id))
+    print(f"   User found: {user is not None}")
+    if user:
+        print(f"   User email: {user.email}")
+    return user
 
 
 class User(UserMixin, db.Model):

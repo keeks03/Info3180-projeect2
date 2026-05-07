@@ -21,9 +21,15 @@ def get_or_create_interest(name):
 @profiles_bp.route('', methods=['POST'])
 @login_required
 def create_profile():
-    print("=" * 50)
-    print("PROFILE CREATION ATTEMPT")
-    print("=" * 50)
+    # --- DEBUG ---
+    print(f"🔍 Profile creation attempt")
+    print(f"   Current user: {current_user}")
+    print(f"   User ID: {current_user.id if current_user.is_authenticated else 'Not authenticated'}")
+    print(f"   Request headers: {dict(request.headers)}")
+    print(f"   Cookies: {request.cookies}")
+    #end DEBUG ---
+
+
     if current_user.profile:
         return jsonify({'error': 'Profile already exists'}), 409
 
@@ -87,6 +93,17 @@ def create_profile():
 @profiles_bp.route('/me', methods=['GET'])
 @login_required
 def get_my_profile():
+    # --- DEBUG ---
+    print("=" * 50)
+    print("🔍 GET /api/profiles/me called")
+    print(f"   Current user: {current_user}")
+    print(f"   User authenticated: {current_user.is_authenticated if hasattr(current_user, 'is_authenticated') else 'Unknown'}")
+    print(f"   Request cookies: {request.cookies}")
+    print(f"   Session: {dict(session) if hasattr(request, 'session') else 'No session'}")
+    print("=" * 50)
+    #end DEBUG ---
+
+
     profile = current_user.profile
     if not profile:
         return jsonify({'error': 'No profile found'}), 404

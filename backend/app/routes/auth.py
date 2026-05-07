@@ -56,32 +56,55 @@ def login():
         return jsonify({'error': 'Email and password are required'}), 400
     
     # --- ADD DEBUG PRINTS ---
-    print(f"🔍 Login attempt for email: {email}")
+    # print(f"🔍 Login attempt for email: {email}")
 
-    user = User.query.filter_by(email=email).first()
+    
 
-    if user:
-        print(f"✅ User found in database: {user.email}")
-        print(f"🔑 Password hash: {user.password_hash[:20]}...")
-        print(f"🔐 Password check result: {user.check_password(password)}")
-    else:
-        print(f"❌ No user found with email: {email}")
-
-    if not user or not user.check_password(password):
-        return jsonify({'error': 'Invalid email or password'}), 401
-    # --- END DEBUG ---
+    # if user:
+    #     print(f"✅ User found in database: {user.email}")
+    #     print(f"🔑 Password hash: {user.password_hash[:20]}...")
+    #     print(f"🔐 Password check result: {user.check_password(password)}")
+    # else:
+    #     print(f"❌ No user found with email: {email}")
+      # --- END DEBUG ---
 
     user = User.query.filter_by(email=email).first()
     if not user or not user.check_password(password):
         return jsonify({'error': 'Invalid email or password'}), 401
+  
 
     login_user(user, remember=True)
-    has_profile = user.profile is not None
-    return jsonify({
+    
+    #debug prints to verify login success and session details
+    print(f"✅ Login successful for {email}")
+    print(f"   User ID: {user.id}")
+    print(f"   Session ID: {session.sid if hasattr(session, 'sid') else 'No session ID'}")
+    print(f"   Session contents: {dict(session)}")
+ #end debug prints
+
+
+    response = jsonify({
         'message': 'Login successful',
         'user': user.to_dict(),
-        'has_profile': has_profile
-    }), 200
+        'has_profile': user.profile is not None
+    })
+   
+    response.set_cookie(
+        'session',
+        value=session.get_cookie_value(),  # You may need to adjust this
+        samesite='None',
+        secure=True,
+        httponly=True,
+        domain='.onrender.com'  # This allows subdomain sharing
+    )
+
+    return response, 200
+    # has_profile = user.profile is not None
+    # return jsonify({
+    #     'message': 'Login successful',
+    #     'user': user.to_dict(),
+    #     'has_profile': has_profile
+    # }), 200
 
 
 @auth_bp.route('/logout', methods=['POST'])
