@@ -1,4 +1,3 @@
-from urllib import request
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -80,7 +79,7 @@ def create_app(config_class=None):
     app.register_blueprint(search_bp, url_prefix='/api/search')
     app.register_blueprint(favourites_bp, url_prefix='/api/favourites')
 
-    CORS(app, supports_credentials=True, origins=["http://localhost:5173", "http://127.0.0.1:5173", "https://driftdater-frontend-7s49.onrender.com"])
+    #CORS(app, supports_credentials=True, origins=["http://localhost:5173", "http://127.0.0.1:5173", "https://driftdater-frontend-7s49.onrender.com"])
     
 
     return app
