@@ -54,6 +54,22 @@ def login():
 
     if not email or not password:
         return jsonify({'error': 'Email and password are required'}), 400
+    
+    # --- ADD DEBUG PRINTS ---
+    print(f"🔍 Login attempt for email: {email}")
+
+    user = User.query.filter_by(email=email).first()
+
+    if user:
+        print(f"✅ User found in database: {user.email}")
+        print(f"🔑 Password hash: {user.password_hash[:20]}...")
+        print(f"🔐 Password check result: {user.check_password(password)}")
+    else:
+        print(f"❌ No user found with email: {email}")
+
+    if not user or not user.check_password(password):
+        return jsonify({'error': 'Invalid email or password'}), 401
+    # --- END DEBUG ---
 
     user = User.query.filter_by(email=email).first()
     if not user or not user.check_password(password):
