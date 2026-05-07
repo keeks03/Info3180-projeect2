@@ -19,3 +19,5 @@ class Config:
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
     SESSION_COOKIE_SAMESITE = 'None'
     SESSION_COOKIE_SECURE = True  # Set True in production with HTTPS
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_DOMAIN = '.onrender.com'
