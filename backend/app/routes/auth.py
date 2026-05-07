@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, session
+from flask import Blueprint, request, jsonify, session,make_response
 from flask_login import login_user, logout_user, login_required, current_user
 from app import db
 from app.models.user import User
@@ -55,30 +55,31 @@ def login():
     if not email or not password:
         return jsonify({'error': 'Email and password are required'}), 400
     
-    print(f"🔍 Login attempt for: {email}")
 
     user = User.query.filter_by(email=email).first()
     if not user or not user.check_password(password):
-        print(f"❌ No user found with email: {email}")
         return jsonify({'error': 'Invalid email or password'}), 401
     
-    print(f"✅ User found: {user.email}")
 
-    if not user.check_password(password):
-        print(f"❌ Password check failed for: {email}")
-        return jsonify({'error': 'Invalid email or password'}), 401
-  
-
+    # if not user.check_password(password):
+    #     return jsonify({'error': 'Invalid email or password'}), 401
     login_user(user, remember=True)
 
-    print(f"📋 Current user authenticated: {current_user.is_authenticated}")
 
-
-    response = jsonify({
+    response = make_response(jsonify({
         'message': 'Login successful',
         'user': user.to_dict(),
         'has_profile': user.profile is not None
-    })
+    }))
+
+    response.set_cookie(
+        'session',
+        value=session.get('_user_id'),  
+        samesite='None',
+        secure=True,
+        httponly=True,
+        domain='.onrender.com'
+    )
    
     return response, 200
     # has_profile = user.profile is not None
