@@ -1,5 +1,4 @@
-
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
@@ -24,33 +23,29 @@ def create_app(config_class=None):
         app.config.from_object(config_class)
 
 
-    @app.before_request
-    def handle_preflight():
-        if request.method == "OPTIONS":
-            response = app.make_default_options_response()
-            response.headers['Access-Control-Allow-Origin'] = 'https://driftdater-frontend-7s49.onrender.com'
-            response.headers['Access-Control-Allow-Credentials'] = 'true'
-            response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS, PATCH'
-            response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
-            return response
+     # Initialize extensions
+    db.init_app(app)
+    migrate.init_app(app, db)
+    bcrypt.init_app(app)
+    login_manager.init_app(app)
 
-    @app.after_request
-    def add_cors_headers(response):
-        response.headers['Access-Control-Allow-Origin'] = 'https://driftdater-frontend-7s49.onrender.com'
-        response.headers['Access-Control-Allow-Credentials'] = 'true'
-        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS, PATCH'
-        response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
-        return response
+    # Configure CORS
+    CORS(app, 
+         supports_credentials=True, 
+         origins=[
+             "http://localhost:5173", 
+             "http://127.0.0.1:5173", 
+             "https://driftdater-frontend-7s49.onrender.com"
+         ],
+         methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+         allow_headers=['Content-Type', 'Authorization']
+    )
 
     # Ensures that upload folder exists
     upload_folder = app.config.get('UPLOAD_FOLDER', 'uploads')
     os.makedirs(upload_folder, exist_ok=True)
 
-    # Initialize extensions
-    db.init_app(app)
-    migrate.init_app(app, db)
-    bcrypt.init_app(app)
-    login_manager.init_app(app)
+   
 
     
     
@@ -79,7 +74,6 @@ def create_app(config_class=None):
     app.register_blueprint(search_bp, url_prefix='/api/search')
     app.register_blueprint(favourites_bp, url_prefix='/api/favourites')
 
-    #CORS(app, supports_credentials=True, origins=["http://localhost:5173", "http://127.0.0.1:5173", "https://driftdater-frontend-7s49.onrender.com"])
     
 
     return app
