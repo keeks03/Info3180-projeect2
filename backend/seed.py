@@ -73,7 +73,7 @@ def seed():
 
         # Create users and profiles
         for u_data in USERS:
-            user = User(email=u_data['email'], username=u_data['username'])
+            user = User(email=u_data['email'], name=u_data['username'])
             user.set_password(u_data['password'])
             db.session.add(user)
             db.session.flush() 

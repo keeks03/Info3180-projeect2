@@ -21,6 +21,9 @@ def get_or_create_interest(name):
 @profiles_bp.route('', methods=['POST'])
 @login_required
 def create_profile():
+    print("=" * 50)
+    print("PROFILE CREATION ATTEMPT")
+    print("=" * 50)
     if current_user.profile:
         return jsonify({'error': 'Profile already exists'}), 409
 
