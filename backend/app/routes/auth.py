@@ -31,10 +31,10 @@ def register():
     if User.query.filter_by(email=email).first():
         return jsonify({'error': 'Email already registered'}), 409
 
-    if User.query.filter_by(username=username).first():
+    if User.query.filter_by(name=name).first():
         return jsonify({'error': 'Username already taken'}), 409
 
-    user = User(email=email, username=username)
+    user = User(email=email, name=name)
     user.set_password(password)
     db.session.add(user)
     db.session.commit()
