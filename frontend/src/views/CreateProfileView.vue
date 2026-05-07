@@ -146,6 +146,10 @@ async function handleSubmit() {
     const fd = new FormData()
     Object.entries(form).forEach(([k, v]) => {
       if (k === 'interests') v.forEach(i => fd.append('interests', i))
+    else if (k === 'date_of_birth') {
+        const formattedDate = new Date(v).toISOString().split('T')[0]
+        fd.append(k, formattedDate)
+      }
       else fd.append(k, v)
     })
     if (selectedFile.value) fd.append('profile_picture', selectedFile.value)
