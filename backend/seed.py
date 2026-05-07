@@ -1,6 +1,4 @@
-"""
-Sered to opulate the database with sample data for testing. Run: python seed.py
-"""
+"""Seed to opulate the database with sample data for testing. Run: python seed.py"""
 from app import create_app, db
 from app.models.user import User
 from app.models.profile import Profile, Interest
