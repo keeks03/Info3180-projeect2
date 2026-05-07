@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, session,make_response
+from flask import Blueprint, request, jsonify, session
 from flask_login import login_user, logout_user, login_required, current_user
 from app import db
 from app.models.user import User
@@ -66,20 +66,12 @@ def login():
     login_user(user, remember=True)
 
 
-    response = make_response(jsonify({
+    response = jsonify({
         'message': 'Login successful',
         'user': user.to_dict(),
         'has_profile': user.profile is not None
-    }))
+    })
 
-    response.set_cookie(
-        'session',
-        value=session.get('_user_id'),  
-        samesite='None',
-        secure=True,
-        httponly=True,
-        domain='.onrender.com'
-    )
    
     return response, 200
     # has_profile = user.profile is not None
