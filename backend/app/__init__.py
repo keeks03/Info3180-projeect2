@@ -30,13 +30,10 @@ def create_app(config_class=None):
     login_manager.init_app(app)
 
     # Configure CORS
-    CORS(app, 
+    CORS(
+        app, 
          supports_credentials=True, 
-         origins=[
-             "http://localhost:5173", 
-             "http://127.0.0.1:5173", 
-             "https://driftdater-frontend-7s49.onrender.com"
-         ],
+         origins=app.config.get('CORS_ORIGINS'),
          methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
          allow_headers=['Content-Type', 'Authorization']
     )

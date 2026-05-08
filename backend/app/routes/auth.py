@@ -107,10 +107,8 @@ def check_auth():
             has_profile = current_user.profile is not None
             return jsonify({
                 'authenticated': True,
-                #'user': current_user.to_dict(),
-                #'has_profile': has_profile
-                'user_id': current_user.id,
-                'email': current_user.email
+                'user': current_user.to_dict(),
+                'has_profile': has_profile
             }), 200
         return jsonify({'authenticated': False}), 200
     except Exception as e:

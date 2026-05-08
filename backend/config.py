@@ -3,6 +3,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+def _split_csv(value):
+    if not value:
+        return []
+    return [item.strip() for item in value.split(',') if item.strip()]
+
 # Absolute path to the backend/ directory 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -18,6 +23,14 @@ class Config:
     MAX_CONTENT_LENGTH = int(os.environ.get('MAX_CONTENT_LENGTH', 16 * 1024 * 1024))
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
     SESSION_COOKIE_SAMESITE = 'None'
-    SESSION_COOKIE_SECURE = True  # Set True in production with HTTPS
+    SESSION_COOKIE_SECURE = True  
     SESSION_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_DOMAIN = '.onrender.com'
+    SESSION_COOKIE_DOMAIN = os.environ.get('SESSION_COOKIE_DOMAIN') or None
+    REMEMBER_COOKIE_SAMESITE = 'None'
+    REMEMBER_COOKIE_SECURE = True
+    REMEMBER_COOKIE_HTTPONLY = True
+    CORS_ORIGINS = _split_csv(os.environ.get('CORS_ORIGINS')) or [
+        "http://localhost:5173", 
+        "http://127.0.1:5173", 
+        "https://driftdater-frontend-7s49.onrender.com"
+    ]
