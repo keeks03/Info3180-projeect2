@@ -22,10 +22,12 @@ class Config:
     UPLOAD_FOLDER = os.path.join(BASE_DIR, os.environ.get('UPLOAD_FOLDER', 'uploads'))
     MAX_CONTENT_LENGTH = int(os.environ.get('MAX_CONTENT_LENGTH', 16 * 1024 * 1024))
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
+    SESSION_COOKIE_NAME = 'driftdater_session'
     SESSION_COOKIE_SAMESITE = 'None'
     SESSION_COOKIE_SECURE = True  
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_DOMAIN = os.environ.get('SESSION_COOKIE_DOMAIN') or None
+    REMEMBER_COOKIE_NAME = 'driftdater_remember'
     REMEMBER_COOKIE_SAMESITE = 'None'
     REMEMBER_COOKIE_SECURE = True
     REMEMBER_COOKIE_HTTPONLY = True

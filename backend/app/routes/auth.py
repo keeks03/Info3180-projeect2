@@ -72,6 +72,9 @@ def login():
         'has_profile': user.profile is not None
     })
 
+    print(f"🍪 Session cookie name: {current_app.config.get('SESSION_COOKIE_NAME')}")
+    print(f"🍪 Session cookie settings: SameSite={current_app.config.get('SESSION_COOKIE_SAMESITE')}, Secure={current_app.config.get('SESSION_COOKIE_SECURE')}")
+
    
     return response, 200
     # has_profile = user.profile is not None
