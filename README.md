@@ -57,6 +57,10 @@ DriftDater is a dating application built using Vue 3 for the frontend and Flask 
 
 ---
 
+### Deployed Website Link
+- https://driftdater-frontend-7s49.onrender.com/
+---
+
 ### Backend Setup
 
 ```bash
@@ -122,9 +126,6 @@ The following accounts are available after running `python seed.py`:
 ## API Overview
 
 **Base URL:** `http://localhost:5000/api`
-
-## Deployed Website Link
-- https://driftdater-frontend-7s49.onrender.com/
 
 ### Authentication
 
