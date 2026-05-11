@@ -117,11 +117,11 @@ npm run dev
 The following accounts are available after running `python seed.py`:
 
 
-alice@example.com - password123  - Alice Wonder 
-bob@example.com - password123 - Bob Builder 
-grace@example.com - password123 - Grace Gamer 
-carol@example.com - password123 - Carol Cook 
-emma@example.com - password123 - Emma Artist 
+- alice@example.com - password123  - Alice Wonder 
+- bob@example.com - password123 - Bob Builder 
+- grace@example.com - password123 - Grace Gamer 
+- carol@example.com - password123 - Carol Cook 
+- emma@example.com - password123 - Emma Artist 
 
 ---
 
