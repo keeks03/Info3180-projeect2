@@ -43,7 +43,8 @@ def create_app(config_class=None):
     from app.routes.messages import messages_bp
     from app.routes.search import search_bp
     from app.routes.favourites import favourites_bp
-
+    from app.routes.moderation import moderation_bp
+    app.register_blueprint(moderation_bp, url_prefix='/api/moderation')
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(profiles_bp, url_prefix='/api/profiles')
     app.register_blueprint(matches_bp, url_prefix='/api/matches')

@@ -33,7 +33,9 @@ DriftDater is a dating application built using Vue 3 for the frontend and Flask 
 - Profile visibility controls (public/private)
 - Basic admin functionality
 - Deployment on Render
-
+- Dark mode/theme customization
+- Video chat integration for matched users
+- Report/block user functionality
 ---
 
 ## Technology Stack
@@ -452,7 +454,7 @@ flask --app app db downgrade
 The following SQL reproduces the full schema on either SQLite or PostgreSQL:
 
 ```sql
--- DriftDater — Full Schema Migration
+-- DriftDater Full Schema Migration
 -- Compatible with SQLite 3.x and PostgreSQL 13+
 
 CREATE TABLE IF NOT EXISTS Users (

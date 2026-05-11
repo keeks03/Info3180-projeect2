@@ -14,10 +14,15 @@
         <HeartHandshake :size="16" /> You have {{ matches.length }} mutual match{{ matches.length !== 1 ? 'es' : '' }}!
       </div>
       <ProfileCard v-for="m in matches" :key="m.user_id" :profile="m">
-        <template #actions>
+       <template #actions>
           <router-link :to="`/messages/${m.user_id}`" class="btn btn-primary btn-sm">
             <MessageCircle :size="14" /> Message
           </router-link>
+
+          <router-link :to="`/call/${m.user_id}`" class="btn btn-success btn-sm">
+            Video Call
+          </router-link>
+
           <router-link :to="`/profile/${m.user_id}`" class="btn btn-secondary btn-sm">
             <Eye :size="14" /> View Profile
           </router-link>

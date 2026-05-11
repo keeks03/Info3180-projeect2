@@ -23,10 +23,14 @@
           <span v-else class="nav-avatar-placeholder">{{ initials }}</span>
           {{ displayName }}
         </router-link>
+        <button class="theme-btn" :title="isDark ? 'Light mode' : 'Dark mode'" @click="toggle">
+          {{ isDark ? '☀️' : '🌙' }}
+        </button>
         <button class="btn btn-sm btn-outline" @click="handleLogout">
           <LogOut :size="15" /> Logout
         </button>
       </div>
+
     </div>
   </nav>
 </template>
@@ -36,19 +40,21 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { matchesAPI, profilesAPI } from '@/api'
+import { useDarkMode } from '@/composables/useDarkMode'
 import {
   HeartHandshake, Heart, MessageCircle, Search,
   Star, LayoutDashboard, LogOut, Menu
 } from 'lucide-vue-next'
 
-const auth = useAuthStore()
-const router = useRouter()
-const menuOpen = ref(false)
+const auth      = useAuthStore()
+const router    = useRouter()
+const menuOpen  = ref(false)
 const matchCount = ref(0)
 const profilePic = ref(null)
+const { isDark, toggle } = useDarkMode()
 
 const displayName = computed(() => auth.user?.username || '')
-const initials = computed(() => (auth.user?.username || 'U').charAt(0).toUpperCase())
+const initials    = computed(() => (auth.user?.username || 'U').charAt(0).toUpperCase())
 
 onMounted(async () => {
   try {
@@ -68,7 +74,7 @@ async function handleLogout() {
 
 <style scoped>
 .navbar {
-  background: #fff;
+  background: var(--card);
   border-bottom: 2px solid var(--border);
   position: sticky; top: 0; z-index: 100;
   box-shadow: 0 2px 12px rgba(108,99,255,0.08);
@@ -109,6 +115,12 @@ async function handleLogout() {
   font-size: 0.8rem; font-weight: 700;
 }
 .nav-profile-link { font-weight: 700 !important; }
+.theme-btn {
+  background: none; border: 2px solid var(--border);
+  border-radius: 50px; padding: 4px 10px; cursor: pointer;
+  font-size: 1rem; color: var(--text); transition: border-color 0.2s;
+}
+.theme-btn:hover { border-color: var(--primary); }
 .nav-hamburger {
   display: none; background: none; border: none; cursor: pointer;
   padding: 4px; color: var(--text);
@@ -118,7 +130,7 @@ async function handleLogout() {
   .nav-hamburger { display: flex; }
   .nav-links {
     display: none; position: absolute; top: 62px; left: 0; right: 0;
-    background: #fff; padding: 12px; flex-direction: column; align-items: flex-start;
+    background: var(--card); padding: 12px; flex-direction: column; align-items: flex-start;
     border-bottom: 2px solid var(--border); box-shadow: var(--shadow);
   }
   .nav-links.open { display: flex; }

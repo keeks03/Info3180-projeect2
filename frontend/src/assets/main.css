@@ -130,3 +130,51 @@ a:hover { text-decoration: underline; }
   .card { padding: 18px; }
   .btn { padding: 9px 18px; }
 }
+/* Dark theme toggle button */
+.theme-toggle {
+  background: none; border: 2px solid var(--border);
+  color: var(--text); border-radius: 50px;
+  padding: 6px 14px; cursor: pointer; font-size: 0.9rem;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: all 0.2s;
+}
+.theme-toggle:hover { border-color: var(--primary); color: var(--primary); }
+
+/* Dark theme CSS variables — applied when <html data-theme="dark"> */
+[data-theme="dark"] {
+  --primary:        #a89eff;
+  --primary-dark:   #c9bfff;
+  --primary-light:  #6c63ff;
+  --secondary:      #ff8da1;
+  --bg:             #0f0e17;
+  --card:           #1a1826;
+  --text:           #fffffe;
+  --text-muted:     #a7a9be;
+  --border:         #2e2b4a;
+  --success:        #69db7c;
+  --danger:         #ff6b6b;
+  --warning:        #ffd43b;
+  --shadow:         0 4px 20px rgba(0,0,0,0.4);
+}
+
+[data-theme="dark"] body         { background: var(--bg); }
+[data-theme="dark"] .card        { background: var(--card); }
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea {
+  background: #13121f; color: var(--text); border-color: var(--border);
+}
+[data-theme="dark"] .form-group input::placeholder,
+[data-theme="dark"] .form-group textarea::placeholder { color: var(--text-muted); }
+[data-theme="dark"] .alert-error   { background: #2d1515; color: #ff8a80; }
+[data-theme="dark"] .alert-success { background: #132013; color: #69db7c; }
+[data-theme="dark"] .alert-info    { background: #14132a; color: var(--primary); }
+[data-theme="dark"] .btn-secondary { background: var(--border); color: var(--text); }
+[data-theme="dark"] .tag           { background: var(--border); color: var(--primary); }
+[data-theme="dark"] .modal-box, [data-theme="dark"] .modal-overlay .modal-box { background: var(--card); }
+[data-theme="dark"] nav, [data-theme="dark"] .navbar { background: var(--card) !important; border-bottom-color: var(--border) !important; }
+[data-theme="dark"] .match-score { background: linear-gradient(135deg, #4b44cc, #6c63ff); color: #ffffff; }
+/* Smooth theme transition */
+*, *::before, *::after {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.1s ease;
+}

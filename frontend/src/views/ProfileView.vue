@@ -48,46 +48,73 @@
             <span v-if="isMutual" class="badge badge-success" style="display:flex;align-items:center;gap:4px;padding:8px 14px;">
               <HeartHandshake :size="15" /> Mutual Match!
             </span>
+
+            <!-- ── Report / Block button ───────────────────────────── -->
+            <button class="btn btn-outline btn-report" @click="showModModal = true">
+              <ShieldAlert :size="16" /> Report / Block
+            </button>
           </template>
+
           <router-link to="/dashboard" class="btn btn-secondary">
             <ChevronLeft :size="16" /> Back
           </router-link>
         </div>
       </div>
     </template>
+
+    <!-- ── Report/Block modal ─────────────────────────────────────── -->
+    <ReportBlockModal
+      v-if="showModModal && profile"
+      :user-id="profile.user_id"
+      :user-name="`${profile.first_name} ${profile.last_name}`"
+      @close="showModModal = false"
+      @blocked="handleBlocked"
+    />
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { profilesAPI, matchesAPI, favouritesAPI } from '@/api'
+import ReportBlockModal from '@/components/moderation/ReportBlockModal.vue'
 import {
   UserCircle, MapPin, Users, Briefcase, GraduationCap, Percent,
   Sparkles, ThumbsUp, Check, X, Star, StarOff, MessageCircle,
-  HeartHandshake, ChevronLeft
+  HeartHandshake, ChevronLeft, ShieldAlert
 } from 'lucide-vue-next'
 
-const route = useRoute()
-const auth = useAuthStore()
-const loading = ref(true)
-const profile = ref(null), picUrl = ref(null)
-const myAction = ref(null), isMutual = ref(false), isFav = ref(false)
+const route  = useRoute()
+const router = useRouter()
+const auth   = useAuthStore()
+
+const loading      = ref(true)
+const profile      = ref(null)
+const picUrl       = ref(null)
+const myAction     = ref(null)
+const isMutual     = ref(false)
+const isFav        = ref(false)
+const showModModal = ref(false)
+
 const isOwnProfile = computed(() => profile.value?.user_id === auth.user?.id)
 
 onMounted(async () => {
   const userId = Number(route.params.userId)
   try {
     const [pRes, statusRes, favRes] = await Promise.all([
-      profilesAPI.getById(userId), matchesAPI.getStatus(userId), favouritesAPI.check(userId)
+      profilesAPI.getById(userId),
+      matchesAPI.getStatus(userId),
+      favouritesAPI.check(userId)
     ])
-    profile.value = pRes.data.profile
-    picUrl.value = profilesAPI.getPictureUrl(profile.value?.profile_picture)
+    profile.value  = pRes.data.profile
+    picUrl.value   = profilesAPI.getPictureUrl(profile.value?.profile_picture)
     myAction.value = statusRes.data.my_action
     isMutual.value = statusRes.data.is_mutual
-    isFav.value = favRes.data.is_favourite
-  } catch {} finally { loading.value = false }
+    isFav.value    = favRes.data.is_favourite
+  } catch {} finally {
+    loading.value = false
+  }
 })
 
 async function handleLike() {
@@ -95,10 +122,19 @@ async function handleLike() {
   myAction.value = 'like'
   if (res.data.is_mutual) { isMutual.value = true; alert("It's a match!") }
 }
-async function handlePass() { await matchesAPI.action(profile.value.user_id, 'pass'); myAction.value = 'pass' }
+async function handlePass() {
+  await matchesAPI.action(profile.value.user_id, 'pass')
+  myAction.value = 'pass'
+}
 async function toggleFav() {
   if (isFav.value) { await favouritesAPI.remove(profile.value.id); isFav.value = false }
-  else { await favouritesAPI.add(profile.value.id); isFav.value = true }
+  else             { await favouritesAPI.add(profile.value.id);    isFav.value = true  }
+}
+
+// After blocking, remove this person from the feed and go back
+function handleBlocked() {
+  showModModal.value = false
+  router.push('/dashboard')
 }
 </script>
 
@@ -120,4 +156,6 @@ h1 { font-size:1.8rem; font-weight:800; margin-bottom:8px; }
 .ph-actions { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
 .empty-state { text-align:center; padding:60px; color:var(--text-muted); }
 .btn-fav-active { background:#fff3cd; color:#b8860b; border:2px solid #f0c040; }
+.btn-report { color: var(--danger); border-color: var(--danger); }
+.btn-report:hover { background: var(--danger); color: #fff; }
 </style>

@@ -101,7 +101,7 @@
       </div>
       <div class="form-group">
         <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
-          <input type="checkbox" v-model="form.is_public" /> <Eye :size="13" /> Make profile public
+          <input type="checkbox" v-model="form.is_public" style="align-items: start;" /> <Eye :size="13" /> Make profile public
         </label>
       </div>
       <button class="btn btn-primary btn-lg" style="width:100%" @click="handleSubmit" :disabled="loading">
