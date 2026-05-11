@@ -182,7 +182,7 @@ def browse_profiles():
     if not my_profile:
         return jsonify({'error': 'Create your profile first'}), 400
 
-    # IDs to exclude: already acted on + self + any block (either direction)
+    # IDs to exclude: already acted on, self and any block (either direction)
     excluded_ids = {m.liked_id for m in current_user.likes_given}
     excluded_ids.add(current_user.id)
     excluded_ids |= get_blocked_ids()

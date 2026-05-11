@@ -436,7 +436,7 @@ DriftDater uses **Flask-Migrate** (Alembic) for schema versioning. Every schema 
 #### Flask-Migrate Commands
 
 ```bash
-# First time only — initialise the migrations folder
+# First time only initialise the migrations folder
 flask --app app db init
 
 # Auto-generate a migration from current SQLAlchemy models
@@ -449,7 +449,7 @@ flask --app app db upgrade
 flask --app app db downgrade
 ```
 
-#### Raw SQL Schema (portable fallback)
+#### Raw SQL Schema (a fallback approach)
 
 The following SQL reproduces the full schema on either SQLite or PostgreSQL:
 

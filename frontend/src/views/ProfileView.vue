@@ -49,7 +49,7 @@
               <HeartHandshake :size="15" /> Mutual Match!
             </span>
 
-            <!-- ── Report / Block button ───────────────────────────── -->
+            <!-- Report and Block button  -->
             <button class="btn btn-outline btn-report" @click="showModModal = true">
               <ShieldAlert :size="16" /> Report / Block
             </button>
@@ -62,7 +62,7 @@
       </div>
     </template>
 
-    <!-- ── Report/Block modal ─────────────────────────────────────── -->
+    <!-- Report/Block modal -->
     <ReportBlockModal
       v-if="showModModal && profile"
       :user-id="profile.user_id"

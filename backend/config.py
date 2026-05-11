@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Absolute path to the backend/ directory so uploads always resolve correctly
+# Absolute path to the backend or directory so uploads always resolve correctly
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 class Config:

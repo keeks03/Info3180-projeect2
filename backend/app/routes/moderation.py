@@ -1,14 +1,3 @@
-"""
-app/routes/moderation.py
-Place at: backend/app/routes/moderation.py
-
-Register in backend/app/__init__.py:
-    from app.routes.moderation import moderation_bp
-    app.register_blueprint(moderation_bp, url_prefix='/api/moderation')
-
-Also import models in __init__.py create_app():
-    from app.models import user, profile, match, message, favourite, report, block
-"""
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app import db
@@ -20,7 +9,7 @@ from app.models.match import Match
 moderation_bp = Blueprint('moderation', __name__)
 
 
-# ── REPORT ────────────────────────────────────────────────────────────────────
+# REPORT
 
 @moderation_bp.route('/report', methods=['POST'])
 @login_required
@@ -63,7 +52,7 @@ def report_user():
     return jsonify({'message': 'Report submitted. Thank you for keeping DriftDater safe.'}), 200
 
 
-# ── BLOCK ─────────────────────────────────────────────────────────────────────
+# BLOCK 
 
 @moderation_bp.route('/block', methods=['POST'])
 @login_required

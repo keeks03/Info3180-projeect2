@@ -101,7 +101,7 @@ let   pollInterval   = null
 
 const SIG = '__WEBRTC__'
 
-// ── Message classification ────────────────────────────────────────────────
+// Message classification 
 const visibleMessages = computed(() =>
   messages.value.filter(m => !m.content?.startsWith(SIG))
 )
@@ -118,11 +118,11 @@ function isCallEnded(msg) {
 function callNoticeBodyLines(msg) {
   return msg.content
     .split('\n')
-    .slice(1)                    // skip first line — already shown as title
+    .slice(1)                    // skip first line already shown as title
     .filter(l => l.trim())
 }
 
-// ── Data loading ──────────────────────────────────────────────────────────
+// Data loading 
 onMounted(async () => {
   try {
     const [msgs, profile] = await Promise.all([
@@ -217,7 +217,7 @@ function formatTime(iso) {
   border: 1.5px solid;
 }
 
-/* Started green tint */
+/* green tint */
 .call-notice--started {
   background: #e8f5e9;
   border-color: #66bb6a;
@@ -229,7 +229,7 @@ function formatTime(iso) {
   color: #a5d6a7;
 }
 
-/* Ended muted grey-blue */
+/* grey-blue */
 .call-notice--ended {
   background: #ede7f6;
   border-color: #9575cd;
